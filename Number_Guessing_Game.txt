@@ -1,0 +1,99 @@
+import java.util.Random;
+ import java.util.Scanner;
+ import java.util.*;
+
+ public class Task2 {
+
+    private static final int MIN_RANGE= 1;
+    private static final int MAX_RANGE = 100;
+    private static final int MAX_ATTEMPTS = 10;
+    private static final int MAX_ROUNDS = 3;
+
+
+   
+    public static void main(String[] args) {
+        Random random = new Random();
+        Scanner scanner = new Scanner(System.in);
+        int totalScore = 0;
+
+        System.out.println("NUMBER GUESSING GAME");
+        System.out.println("Total Number Of Rounds: 3");
+        System.out.println("Attempts To Guess Number In Each Round: 10\n");
+
+        for (int i = 1; i < MAX_ROUNDS; i++) {
+             int number = random.nextInt(MAX_RANGE) + MIN_RANGE;
+             int attempts = 0;
+             
+             System.out.printf(" Round %d: Guess the number between %d and %d in %d attempts.\n", i, MIN_RANGE ,MAX_RANGE, MAX_ATTEMPTS);
+
+            while (attempts < MAX_ATTEMPTS) {
+              System.out.println( "Enter your guess: ");
+              int guess_number = scanner.nextInt();
+              attempts = attempts + 1;
+
+              if (guess_number == number) {
+                 int score = MAX_ATTEMPTS - attempts;
+                 totalScore = totalScore + score;
+                 System.out.printf( "Hurray! Number Guessed Successfully. Attempts = %d. Round Score = %d\n" ,attempts, score);
+                 break; 
+              }
+
+              else if (guess_number < number) {
+              System.out.printf( "The number is greater than %d. Attempts Left = %d.\n", guess_number ,MAX_ATTEMPTS - attempts);
+              }
+              
+              else if (guess_number > number) {
+              System.out.printf( "The number is less than %d. Attempts Left = %d.\n", guess_number, MAX_ATTEMPTS - attempts);
+              }
+            }
+              if (attempts == MAX_ATTEMPTS) {
+                  System.out.printf("\nRound = %d\n", i);
+                  System.out.println( "Attempts = 0");
+                  System.out.printf( "The Random Number Is: %d\n\n", number);
+               }
+           }
+          System.out.printf("Game Over. Total Score = %d\n", totalScore);
+          scanner.close();
+    }
+  }
+
+
+Output-NUMBER GUESSING GAME
+Total Number Of Rounds: 3
+Attempts To Guess Number In Each Round: 10
+
+ Round 1: Guess the number between 1 and 100 in 10 attempts.
+Enter your guess: 
+2
+The number is greater than 2. Attempts Left = 9.
+Enter your guess: 
+50
+The number is greater than 50. Attempts Left = 8.
+Enter your guess: 
+90
+The number is less than 90. Attempts Left = 7.
+Enter your guess: 
+80
+The number is less than 80. Attempts Left = 6.
+Enter your guess: 
+70
+The number is less than 70. Attempts Left = 5.
+Enter your guess: 
+60
+The number is less than 60. Attempts Left = 4.
+Enter your guess: 
+55
+The number is less than 55. Attempts Left = 3.
+Enter your guess: 
+54
+The number is less than 54. Attempts Left = 2.
+Enter your guess: 
+51
+The number is greater than 51. Attempts Left = 1.
+Enter your guess: 
+52
+The number is greater than 52. Attempts Left = 0.
+
+Round = 1
+Attempts = 0
+The Random Number Is: 53
